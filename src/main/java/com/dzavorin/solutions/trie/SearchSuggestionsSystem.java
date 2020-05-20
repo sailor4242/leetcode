@@ -140,6 +140,7 @@ public class SearchSuggestionsSystem {
         return res;
     }
 
+
     public List<List<String>> suggestedProducts2(String[] products, String searchWord) {
         PriorityQueue<String> pq = new PriorityQueue<>(3);
         List<List<String>> res = new ArrayList<>();

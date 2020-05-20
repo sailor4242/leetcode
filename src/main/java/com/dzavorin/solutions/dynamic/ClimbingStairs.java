@@ -1,4 +1,4 @@
-package com.dzavorin.solutions;
+package com.dzavorin.solutions.dynamic;
 
 public class ClimbingStairs {
 
