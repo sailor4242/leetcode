@@ -1,4 +1,4 @@
-package com.dzavorin.solutions;
+package com.dzavorin.solutions.dynamic;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ public class MinimumFaillingSum {
             prev = Integer.MAX_VALUE;
             cur = dp[0];
             for (int j = 0; j < n; j++) {
-                next = (j < n - 1) ? dp[j + 1] : Integer.MAX_VALUE;
+                next = j + 1 < n ? dp[j + 1] : Integer.MAX_VALUE;
                 dp[j] = A[i][j] + Math.min(dp[j], Math.min(prev, next));
                 prev = cur;
                 cur = next;
@@ -36,6 +36,10 @@ public class MinimumFaillingSum {
 
 
             return Arrays.stream(A[A.length - 1]).min().getAsInt();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new MinimumFaillingSum().minFallingPathSum(new int[][]{{1,2,3}, {4,5,6},{7,8,9}}));
     }
 
 
