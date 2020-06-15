@@ -23,6 +23,7 @@ public class LastStoneWeight2 {
         for (int s : stones) {
             S += s;
         }
+
         int n = stones.length;
         boolean[][] dp = new boolean[S + 1][n + 1];
         for (int i = 0; i <= n; i++) {

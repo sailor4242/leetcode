@@ -1,6 +1,8 @@
 package com.dzavorin.solutions;
 
 
+import java.util.Random;
+
 public class RandomPickWithWeight {
     int[] w;
     int s;
