@@ -1,4 +1,4 @@
-package com.dzavorin.solutions;
+package com.dzavorin.solutions.bfs;
 
 public class NumberOfIslands {
 
