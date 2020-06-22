@@ -1,4 +1,4 @@
-package com.dzavorin.solutions;
+package com.dzavorin.solutions.dynamic.levenshtain;
 
 
 public class LongestCommonSubsequence {

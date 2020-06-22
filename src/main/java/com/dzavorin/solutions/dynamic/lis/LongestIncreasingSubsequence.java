@@ -1,4 +1,4 @@
-package com.dzavorin.solutions.dynamic;
+package com.dzavorin.solutions.dynamic.lis;
 
 import java.util.Arrays;
 
