@@ -40,6 +40,8 @@ public class LargestRectangleInHistogram {
     public static void main(String[] args) {
         System.out.println(new LargestRectangleInHistogram()
                 .largestRectangleArea(new int[]{2,1,5,6,2,3}));
+        System.out.println(new LargestRectangleInHistogram()
+                .largestRectangleArea(new int[]{3,1,3,2,2}));
     }
 
 }
