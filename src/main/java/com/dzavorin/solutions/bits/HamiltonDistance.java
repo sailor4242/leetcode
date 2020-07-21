@@ -1,4 +1,4 @@
-package com.dzavorin.solutions.math;
+package com.dzavorin.solutions.bits;
 
 public class HamiltonDistance {
 

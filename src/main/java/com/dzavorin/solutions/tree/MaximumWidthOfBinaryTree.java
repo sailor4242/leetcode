@@ -1,6 +1,7 @@
 package com.dzavorin.solutions.tree;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 import static com.dzavorin.solutions.tree.KthSmallestInBST.*;
 
@@ -43,11 +44,11 @@ public class MaximumWidthOfBinaryTree {
         return res;
     }
 
-    static class Pair<K, V> {
+    static public class Pair<K, V> {
         K key;
         V value;
 
-        Pair(K k, V v) {
+        public Pair(K k, V v) {
             this.key = k;
             this.value = v;
         }
@@ -66,6 +67,20 @@ public class MaximumWidthOfBinaryTree {
 
         public void setValue(V value) {
             this.value = value;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Pair<?, ?> pair = (Pair<?, ?>) o;
+            return Objects.equals(key, pair.key) &&
+                    Objects.equals(value, pair.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(key, value);
         }
     }
 }
