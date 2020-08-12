@@ -1,4 +1,4 @@
-package com.dzavorin.solutions;
+package com.dzavorin.solutions.design;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

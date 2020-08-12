@@ -10,7 +10,6 @@ public class BestTimeToBuyAndSell {
 
         int res = 0;
         int l = prices[0];
-        int arr[] = new int[prices.length];
 
         for (int i = 1; i < prices.length; i++) {
             if ( l < prices[i] && prices[i] - l > res) {
