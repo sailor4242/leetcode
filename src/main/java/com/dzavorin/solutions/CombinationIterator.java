@@ -1,5 +1,10 @@
 package com.dzavorin.solutions;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
 class CombinationIterator {
 
     int combinationLength;
@@ -55,14 +60,54 @@ class CombinationIterator {
         return this.hasnext;
     }
 
+
+    static class CombinationIteratorAnother {
+
+        int c;
+        char[] arr;
+        LinkedList<String> list = new LinkedList<>();
+
+        public CombinationIteratorAnother(String characters, int combinationLength) {
+            this.c = combinationLength;
+            this.arr = characters.toCharArray();
+
+            go(0, combinationLength, new StringBuilder());
+
+        }
+
+        public void go(int lo, int len, StringBuilder sb) {
+            if (len == 0) {
+                list.add(sb.toString());
+                return;
+            }
+            for (int i = lo; i <= arr.length - len; i++) {
+                sb.append(arr[i]);
+                go(i + 1, len - 1, sb);
+                sb.deleteCharAt(sb.length() - 1);
+            }
+        }
+
+        public String next() {
+            return list.poll();
+        }
+
+        public boolean hasNext() {
+            return !list.isEmpty();
+        }
+    }
+
     public static void main(String[] args) {
         CombinationIterator ci = new CombinationIterator("abc", 2);
         System.out.println(ci.next());
         System.out.println(ci.next());
         System.out.println(ci.next());
-        System.out.println(ci.next());
-        System.out.println(ci.next());
         System.out.println(ci.hasNext());
+
+        CombinationIteratorAnother cia = new CombinationIteratorAnother("chp", 1);
+        System.out.println(cia.next());
+        System.out.println(cia.next());
+        System.out.println(cia.next());
+        System.out.println(cia.hasNext());
     }
 
 }
