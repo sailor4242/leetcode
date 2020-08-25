@@ -1,39 +1,32 @@
 package com.dzavorin.solutions.dynamic;
 
-import java.util.Arrays;
-
 public class MinimumCostForTickets {
 
-    int[] days, costs;
-    int[] memo;
-    int[] durations = new int[]{1, 7, 30};
+    int[] durations = new int[] {1, 7, 30};
 
     public int mincostTickets(int[] days, int[] costs) {
-        this.days = days;
-        this.costs = costs;
-        memo = new int[days.length];
 
-        return dp(0);
+        int[] memo = new int[days.length];
+
+        return dp(0, days, costs, memo);
     }
 
-    public int dp(int i) {
-        if (i >= days.length)
-            return 0;
-        if (memo[i] != 0)
-            return memo[i];
+    public int dp(int i, int[] days, int[] costs, int[] memo) {
+        if (i >= days.length) return 0;
+        if (memo[i] != 0) return memo[i];
 
-        int ans = Integer.MAX_VALUE;
+        int min = Integer.MAX_VALUE;
         int j = i;
-        for (int k = 0; k < 3; k++) {
-            while (j < days.length && days[j] < days[i] + durations[k])
+        for (int k = 0; k < costs.length; k++) {
+            while (j < days.length && days[j] < days[i] + durations[k]) {
                 j++;
-            ans = Math.min(ans, dp(j) + costs[k]);
+            }
+            min = Math.min(min, costs[k] + dp(j, days, costs, memo));
         }
 
-        memo[i] = ans;
-        return ans;
+        memo[i] = min;
+        return min;
     }
-
 
     public static void main(String[] args) {
         System.out.println(new MinimumCostForTickets().mincostTickets(
