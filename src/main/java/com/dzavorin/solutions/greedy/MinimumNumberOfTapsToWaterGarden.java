@@ -64,11 +64,41 @@ public class MinimumNumberOfTapsToWaterGarden {
             }
 
         }
-        return notFound ? new int[] {-1, -1} : ans;
+        return notFound ? new int[]{-1, -1} : ans;
+    }
+
+    public int minTaps2(int n, int[] ranges) {
+        int[][] taps = new int[n + 1][2];
+        for (int i = 0; i <= n; i++) {
+            taps[i][0] = i - ranges[i];
+            taps[i][1] = i + ranges[i];
+        }
+
+        Arrays.sort(taps, Comparator.comparingInt((int[] a) -> a[0]).thenComparingInt((int[] a) -> -a[1]));
+        int ans = 0;
+        int toCover = 0;
+        int leftMax = 0;
+        for (int i = 0; i <= n; i++) {
+            if (taps[i][1] <= leftMax) continue;
+
+            if (taps[i][0] <= toCover) {
+                leftMax = Math.max(leftMax, taps[i][1]);
+            } else {
+                if (leftMax <= toCover) return -1;
+                else {
+                    ans += 1;
+                    toCover = leftMax;
+                    if (toCover >= n) return ans;
+                    if (taps[i][0] > toCover) return -1;
+                    leftMax = Math.max(leftMax, taps[i][1]);
+                }
+            }
+        }
+        return leftMax >= n ? ans + 1 : -1;
     }
 
     public static void main(String[] args) {
-        System.out.println(new MinimumNumberOfTapsToWaterGarden().minTaps(5, new int[]{3,4,1,1,0,0}));
-        System.out.println(new MinimumNumberOfTapsToWaterGarden().minTaps(3, new int[]{0,0,0,0}));
+        System.out.println(new MinimumNumberOfTapsToWaterGarden().minTaps(5, new int[]{3, 4, 1, 1, 0, 0}));
+        System.out.println(new MinimumNumberOfTapsToWaterGarden().minTaps(3, new int[]{0, 0, 0, 0}));
     }
 }

@@ -1,4 +1,4 @@
-package com.dzavorin.solutions.datastructuredesign;
+package com.dzavorin.solutions.design;
 
 import java.util.*;
 
