@@ -5,28 +5,36 @@ import java.util.*;
 public class CombinationSum {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (candidates.length == 0) {
-            return result;
-        }
-        helper(candidates, result, new ArrayList<>(),0, target);
-        return result;
+
+        List<List<Integer>> res = new ArrayList<>();
+
+        dfs(candidates, target, res, new LinkedList<>(), 0, 0);
+
+        return res;
     }
 
-    private void helper(int [] candidates, List<List<Integer>> result, List<Integer> tempList, int pos, int sumLeft){
-        if (sumLeft == 0) {
-            result.add(new ArrayList<>(tempList));
+    private void dfs(int[] candidates, int target,
+                     List<List<Integer>> res,
+                     LinkedList<Integer> list, int sum, int begin) {
+
+        if (sum > target) {
+            return;
+        } else if (sum == target) {
+            res.add(new ArrayList<>(list));
             return;
         }
-        for (int i = pos; i < candidates.length; i++){
-            if (sumLeft - candidates[i] < 0) {
-                continue;
+
+        for (int i = begin; i < candidates.length; i++) {
+            int c = candidates[i];
+            if (sum + c <= target) {
+                list.add(c);
+                dfs(candidates, target, res, list, sum + c, i);
+                list.removeLast();
             }
-            tempList.add(candidates[i]);
-            helper(candidates,result, tempList, i, sumLeft - candidates[i]);
-            tempList.remove(tempList.size() - 1);
         }
     }
+
+    /////
 
     public int[] gcd(int[] candidates) {
         Arrays.sort(candidates);
