@@ -4,39 +4,6 @@ import java.util.HashMap;
 
 public class BestTimeToBuyAndSell3 {
 
-    public int maxProfit3(int[] prices) {
-        if (prices.length < 2) {
-            return 0;
-        }
-        int[][][] memo = new int[prices.length][prices.length][3];
-        int r = go(prices, 0, 1, 2, memo);
-        return r;
-    }
-
-    private int go(int[] prices, int i, int j, int k, int[][][] memo) {
-
-        if (k == 0 || j >= prices.length) {
-            return 0;
-        }
-
-        if (memo[i][j][k] != 0) {
-            return memo[i][j][k];
-        }
-        int res;
-        if (prices[j] > prices[i]) {
-            int r = prices[j] - prices[i];
-            int next = go(prices, j + 1, j + 2, k - 1, memo);
-            int skip = go(prices, i, j + 1, k, memo);
-            memo[i][j][k] = Math.max(r + next, skip);
-        } else {
-            int next = go(prices, j, j + 1, k, memo);
-            int skip = go(prices, i, j + 1, k, memo);
-            memo[i][j][k] = Math.max(next, skip);
-        }
-
-        return memo[i][j][k];
-    }
-
     ////////////////////////////
 
     public int maxProfit(int[] prices) {
@@ -73,33 +40,30 @@ public class BestTimeToBuyAndSell3 {
     //////////////////
 
     public static int maxProfit4(int[] prices) {
-        return maxProfitHelper(prices, 0, 0, new Integer[prices.length + 1][3]);
+        return go(prices, 0, 0, new Integer[prices.length + 1][3]);
     }
 
-    public static int maxProfitHelper(int[] prices, int tr, int i, Integer[][] memo) {
-        if (i == prices.length || tr == 2) {
+    public static int go(int[] prices, int k, int i, Integer[][] memo) {
+        if (i == prices.length || k == 0) {
             return 0;
         }
 
-        if (memo[i][tr] != null) {
-            return memo[i][tr];
+        if (memo[i][k] != null) {
+            return memo[i][k];
         }
 
-        int current = 0;
-
+        int res = 0;
         for (int j = i + 1; j < prices.length; j++) {
-            if (prices[i] < prices[j]) {
-                int price = prices[j] - prices[i];
-
-                int recur = maxProfitHelper(prices, tr + 1, j + 1, memo);
-
-                current = Math.max(current, price + recur);
+            if (prices[j] > prices[i]) {
+                res = Math.max(
+                        res,
+                        prices[j] - prices[i] + go(prices, k - 1, j + 1, memo)
+                );
             }
         }
-        current = Math.max(current, maxProfitHelper(prices, tr, i + 1, memo));
+        memo[i][k] = Math.max(res, go(prices, k, i + 1, memo));
 
-        memo[i][tr] = current;
-        return memo[i][tr];
+        return memo[i][k];
     }
 
     // O(n) for 2 transactions only

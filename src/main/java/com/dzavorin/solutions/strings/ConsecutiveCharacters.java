@@ -3,16 +3,16 @@ package com.dzavorin.solutions.strings;
 public class ConsecutiveCharacters {
 
     public int maxPower(String s) {
-        if (s.isEmpty()) return 0;
-        int res = 1;
-        int c = 1;
+        if (s == null || s.isEmpty()) return 0;
 
+        int res = 1;
+        int count = 1;
         for (int i = 1; i < s.length(); i++) {
             if (s.charAt(i) == s.charAt(i - 1)) {
-                c++;
-                res = Math.max(res, c);
+                count++;
+                res = Math.max(res, count);
             } else {
-                c = 1;
+                count = 1;
             }
 
         }

@@ -28,12 +28,10 @@ public class LargestSumOfAverages {
         return dp[0];
     }
 
-    double[][] dp;
-
     public double largestSumOfAverages2(int[] A, int K) {
         double[] prefix = new double[A.length + 1];
 
-        dp = new double[prefix.length][K + 1];
+        double[][] dp = new double[prefix.length][K + 1];
         for (double[] row : dp) {
             Arrays.fill(row, -1);
         }
@@ -41,10 +39,10 @@ public class LargestSumOfAverages {
             prefix[i] = prefix[i - 1] + A[i - 1];
         }
 
-        return dfs(prefix, 1, K);
+        return dfs(prefix, 1, K, dp);
     }
 
-    double dfs(double[] prefix, int start, int K) {
+    double dfs(double[] prefix, int start, int K, double[][] dp) {
         if (start >= prefix.length) return 0;
         // if K == 1 because we have to use all of the elements, just return the average of the rest of the array
         if (K == 1) {
@@ -54,7 +52,7 @@ public class LargestSumOfAverages {
 
         double greatestAverage = 0;
         for (int i = start; i < prefix.length; i++) {
-            greatestAverage = Math.max(greatestAverage, dfs(prefix, i + 1, K - 1) + (prefix[i] - prefix[start - 1]) / (i - start + 1));
+            greatestAverage = Math.max(greatestAverage, dfs(prefix, i + 1, K - 1, dp) + (prefix[i] - prefix[start - 1]) / (i - start + 1));
         }
         dp[start][K] = greatestAverage;
         return greatestAverage;

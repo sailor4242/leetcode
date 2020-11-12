@@ -143,6 +143,6 @@ public class RepeatedStringMatch {
     public static void main(String[] args) {
         System.out.println(new RepeatedStringMatch().repeatedStringMatch("abcd", "cdabcdab"));
         System.out.println(new RepeatedStringMatch().repeatedStringMatch("abcd", "xw"));
-        System.out.println(new RepeatedStringMatch().check("abcdabcdabcd", "cdabcdab"));
+        System.out.println(new RepeatedStringMatch().repeatedStringMatch("abcdabcdabcd", "cdabcdab"));
     }
 }

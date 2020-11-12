@@ -8,6 +8,39 @@ public class Permutations2 {
     List<List<Integer>> res = new ArrayList<>();
 
     public List<List<Integer>> permuteUnique(int[] nums) {
+        if (nums.length == 0) {
+            return new ArrayList<>();
+        }
+        Arrays.sort(nums);
+        boolean[] visited = new boolean[nums.length];
+        List<Integer> sans = new ArrayList<>();
+        permuteUnique(nums, visited, sans);
+        return res;
+    }
+
+    public void permuteUnique(int[] nums, boolean[] visited, List<Integer> list) {
+
+        if (list.size() == nums.length) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        int prev = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+
+            if (!visited[i] && prev != nums[i]) {
+                visited[i] = true;
+                prev = nums[i];
+                list.add(nums[i]);
+                permuteUnique(nums, visited, list);
+                list.remove(list.size() - 1);
+                visited[i] = false;
+            }
+        }
+    }
+
+    //////////////////
+
+    public List<List<Integer>> permuteUnique2(int[] nums) {
         List<Integer> list = Arrays.stream(nums)
                 .boxed()
                 .sorted()

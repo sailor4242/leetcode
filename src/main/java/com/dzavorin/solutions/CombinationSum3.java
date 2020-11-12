@@ -10,7 +10,7 @@ public class CombinationSum3 {
     public List<List<Integer>> combinationSum32(int k, int n) {
 
         dfs(k, n, new HashSet<>(), 0);
-        return res.stream().map(set -> new ArrayList<>(set)).collect(Collectors.toList());
+        return res.stream().map(ArrayList::new).collect(Collectors.toList());
     }
 
     void dfs(int k, int n, Set<Integer> nums, int s) {

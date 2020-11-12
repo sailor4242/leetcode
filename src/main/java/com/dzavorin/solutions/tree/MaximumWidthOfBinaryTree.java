@@ -14,7 +14,7 @@ public class MaximumWidthOfBinaryTree {
 
         int res = 1;
         LinkedList<Pair<Integer, TreeNode>> list = new LinkedList<Pair<Integer, TreeNode>>();
-        list.add(new Pair(0, root));
+        list.add(new Pair<>(0, root));
 
         while (!list.isEmpty()) {
 
@@ -29,11 +29,11 @@ public class MaximumWidthOfBinaryTree {
                 Integer i = pair.getKey();
 
                 if (cur.left != null) {
-                    nextList.add(new Pair(2*i, cur.left));
+                    nextList.add(new Pair<>(2*i, cur.left));
 
                 }
                 if (cur.right != null) {
-                    nextList.add(new Pair(2*i + 1, cur.right));
+                    nextList.add(new Pair<>(2*i + 1, cur.right));
                 }
             }
 
