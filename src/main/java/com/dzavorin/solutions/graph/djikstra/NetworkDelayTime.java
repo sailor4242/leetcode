@@ -1,4 +1,4 @@
-package com.dzavorin.solutions.bfs;
+package com.dzavorin.solutions.graph.djikstra;
 
 import java.util.*;
 

@@ -71,7 +71,6 @@ public class SlidingWindowMaximum {
             while (!list.isEmpty() && nums[list.peekLast()] < nums[i]) {
                 list.pollLast();
             }
-            // q contains index... res contains content
             list.add(i);
             if (i >= k - 1) {
                 res[j++] = nums[list.peek()];
@@ -81,8 +80,8 @@ public class SlidingWindowMaximum {
     }
 
     public static void main(String[] args) {
-//        System.out.println(Arrays.toString(
-//                new SlidingWindowMaximum().maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
+        System.out.println(Arrays.toString(
+                new SlidingWindowMaximum().maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
 
         System.out.println(Arrays.toString(
                 new SlidingWindowMaximum().maxSlidingWindow(new int[]{1, -1}, 1)));
