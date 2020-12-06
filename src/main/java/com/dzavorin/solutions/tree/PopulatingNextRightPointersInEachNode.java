@@ -5,22 +5,18 @@ import java.util.LinkedList;
 
 public class PopulatingNextRightPointersInEachNode {
 
+    // given perfect tree with every node having two children !!!
+
     ///// dfs
 
     public Node connect(Node root) {
-
-        if (root == null || root.left == null) {
-            return root;
+        if (root == null) return null;
+        if (root.left != null) {
+            root.left.next = root.right;
+            if (root.next != null) root.right.next = root.next.left;
         }
-
-        root.left.next = root.right;
-        if (root.next != null) {
-            root.right.next = root.next.left;
-        }
-
         connect(root.left);
         connect(root.right);
-
         return root;
     }
 
@@ -73,7 +69,8 @@ public class PopulatingNextRightPointersInEachNode {
         public Node right;
         public Node next;
 
-        public Node() {}
+        public Node() {
+        }
 
         public Node(int _val) {
             val = _val;
