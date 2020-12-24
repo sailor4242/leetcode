@@ -17,8 +17,7 @@ public class SpiralMatrix {
         LinkedList<int[]> list = new LinkedList<>();
         list.add(new int[]{0, 0});
 
-        DirectionIt it = new DirectionIt();
-        Direction prev = it.next();
+        Direction prev = Direction.RIGHT;
 
         while (!list.isEmpty()) {
             int[] cur = list.removeFirst();
@@ -64,16 +63,6 @@ public class SpiralMatrix {
         Direction(int x, int y) {
             this.x = x;
             this.y = y;
-        }
-    }
-
-    static class DirectionIt {
-        int c = 0;
-
-        DirectionIt() {}
-
-        Direction next() {
-            return Direction.values()[c++ % 4];
         }
     }
 
