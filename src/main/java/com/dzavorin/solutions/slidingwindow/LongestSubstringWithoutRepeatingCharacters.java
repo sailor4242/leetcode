@@ -5,6 +5,26 @@ import java.util.Map;
 
 public class LongestSubstringWithoutRepeatingCharacters {
 
+    //sliding window
+
+    public int lengthOfLongestSubstring3(String s) {
+
+        Map<Character, Integer> map = new HashMap<>(); // current index of character
+
+        int lo = 0;
+        int res = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            Integer nextLo = map.get(ch);
+            if (nextLo != null) {
+                lo = Math.max(nextLo, lo);
+            }
+            res = Math.max(res, i - lo + 1);
+            map.put(ch, i + 1);
+        }
+        return res;
+    }
+
     public int lengthOfLongestSubstring(String s) {
 
         if (s.equals("")) {
