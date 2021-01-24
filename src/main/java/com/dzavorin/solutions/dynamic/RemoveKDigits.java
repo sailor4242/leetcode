@@ -42,6 +42,42 @@ public class RemoveKDigits {
         return "".equals(res) ? "0" : res;
     }
 
+    /// sb instead of stack
+
+    public String removeKdigits3(String s, int k) {
+
+        if (k >= s.length()) return "0";
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+
+            char cur = s.charAt(i);
+
+            while (sb.length() > 0 && s.charAt(i) < sb.charAt(sb.length() - 1) && k > 0) {
+                sb.deleteCharAt(sb.length() - 1);
+                k--;
+            }
+
+            sb.append(s.charAt(i));
+
+        }
+
+        while (sb.length() > 0 && k > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+            k--;
+        }
+
+        int i = 0;
+        while (sb.charAt(i) == '0' && sb.length() > 1) {
+            sb.deleteCharAt(i);
+        }
+
+        return sb.toString();
+    }
+
+    ///
+
     public static String removeKdigits2(String num, int k) {
         StringBuilder sb = new StringBuilder();
         for (char c : num.toCharArray()) {
