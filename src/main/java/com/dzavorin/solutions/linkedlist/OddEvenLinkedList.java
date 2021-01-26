@@ -1,5 +1,7 @@
 package com.dzavorin.solutions.linkedlist;
 
+import java.security.cert.CertPathBuilder;
+
 public class OddEvenLinkedList {
 
     public ListNode oddEvenList(ListNode head) {
@@ -43,6 +45,36 @@ public class OddEvenLinkedList {
       ListNode() {}
       ListNode(int val) { this.val = val; }
       ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+        public static ListNodeBuilder builder() {
+            return new ListNodeBuilder();
+        }
+
+        public static ListNode build(int ... vals) {
+            ListNode root = new ListNode(-1);
+            ListNode cur = root;
+            for (int val : vals) {
+                cur.next = new ListNode(val);
+                cur = cur.next;
+            }
+            return root.next;
+        }
+    }
+
+    public static class ListNodeBuilder {
+
+        ListNode root = new ListNode(-1);
+        ListNode cur = root;
+
+        public ListNodeBuilder add(int val) {
+            cur.next = new ListNode(val);
+            cur = cur.next;
+            return this;
+        }
+
+        public ListNode build() {
+            return root.next;
+        }
     }
 
     public static void main(String[] args) {

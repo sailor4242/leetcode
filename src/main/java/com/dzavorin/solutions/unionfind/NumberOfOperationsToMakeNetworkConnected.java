@@ -10,24 +10,24 @@ public class NumberOfOperationsToMakeNetworkConnected {
         if (n > connections.length + 1)
             return -1;
 
-    Map<Integer, List<Integer>> graph = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-        graph.put(i, new LinkedList<>());
-    }
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+            graph.put(i, new LinkedList<>());
+        }
 
         for (int[] connection : connections) {
-        graph.get(connection[0]).add(connection[1]);
-        graph.get(connection[1]).add(connection[0]);
-    }
-    int ans = 0;
-
-    boolean[] visited = new boolean[n];
-        for (int i = 0; i < n; i++) {
-        if (!visited[i]) {
-            dfs(i, graph, visited);
-            ans++;
+            graph.get(connection[0]).add(connection[1]);
+            graph.get(connection[1]).add(connection[0]);
         }
-    }
+        int ans = 0;
+
+        boolean[] visited = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs(i, graph, visited);
+                ans++;
+            }
+        }
 
         return ans - 1;
     }
