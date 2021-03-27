@@ -79,4 +79,76 @@ public class LRUCache {
         }
     }
 
+    ////
+
+    private static class Solution2 {
+
+        static class Node {
+            int key;
+            int value;
+            Node prev;
+            Node next;
+
+            public Node(int key, int value) {
+                this.key = key;
+                this.value = value;
+            }
+        }
+
+
+        private final int capacity;
+
+        private Map<Integer, Node> map = new HashMap<>();
+
+        // head -> ... -> tail
+        private final Node dummyHead = new Node(0, 0);
+        private final Node dummyTail = new Node(0, 0);
+
+        public Solution2(int capacity) {
+            this.capacity = capacity;
+            dummyHead.next = dummyTail;
+            dummyTail.prev = dummyHead;
+        }
+
+        public int get(int key) {
+            if (!map.containsKey(key)) return -1;
+            Node node = map.get(key);
+            removeFromList(node);
+            insertToTail(node);
+            return node.value;
+        }
+
+        public void put(int key, int value) {
+            Node node = null;
+            if (!map.containsKey(key)) {
+                if (map.size() == capacity && dummyHead.next != dummyTail) {
+                    map.remove(dummyHead.next.key);
+                    removeFromList(dummyHead.next);
+                }
+                if (map.size() < capacity) {
+                    node = new Node(key, value);
+                    map.put(key, node);
+                }
+            } else {
+                node = map.get(key);
+                node.value = value;
+                removeFromList(node);
+            }
+            if (node != null) insertToTail(node);
+        }
+
+
+        private void removeFromList(Node node) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+
+        private void insertToTail(Node node) {
+            node.prev = dummyTail.prev;
+            node.next = dummyTail;
+            dummyTail.prev.next = node;
+            dummyTail.prev = node;
+        }
+    }
+
 }

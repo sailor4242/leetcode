@@ -3,25 +3,20 @@ package com.dzavorin.solutions.arrays;
 public class RemoveDuplicatesFromSortedArray {
 
     public int removeDuplicates(int[] nums) {
-        int diff = 0;
-        if (nums.length == 0) {
-            return 0;
-        }
+        if (nums.length == 0) return 0;
+        int removed = 0;
         int prev = nums[0];
-        int count = 1;
         for (int i = 1; i < nums.length; i++) {
-            nums[i - diff] = nums[i];
-            if (nums[i] == prev) {
-                count++;
-                if (count > 2) {
-                    diff++;
-                }
+            int cur = nums[i];
+            if (cur == prev) {
+                removed++;
             } else {
-                prev = nums[i];
-                count = 1;
+                prev = cur;
+                nums[i - removed] = cur;
             }
         }
-        return nums.length - diff;
+
+        return nums.length - removed;
     }
 
     /////

@@ -2,26 +2,23 @@ package com.dzavorin.solutions;
 
 public class ContinerWithMostWater {
 
-    public int maxArea(int[] nums) {
-
+    public int maxArea(int[] height) {
         int lo = 0;
-        int hi = nums.length - 1;
-        int s = 0;
+        int hi = height.length - 1;
 
-        while (hi > lo) {
+        int max = 0;
 
-            s = Math.max(s, Math.min(nums[lo], nums[hi]) * (hi - lo));
+        while (lo < hi) {
+            max = Math.max(max, (hi - lo) * Math.min(height[hi], height[lo]));
 
-            if (nums[hi] < nums[lo]) {
-                hi--;
-            } else {
+            if (height[hi] > height[lo]) {
                 lo++;
+            } else {
+                hi--;
             }
-
         }
 
-        return s;
-
+        return max;
     }
 
     public static void main(String[] args) {

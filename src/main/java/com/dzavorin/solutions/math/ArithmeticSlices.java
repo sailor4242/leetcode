@@ -10,17 +10,26 @@ public class ArithmeticSlices {
     /////// math formula
 
     public int numberOfArithmeticSlices(int[] A) {
+        int res = 0;
+        if (A.length < 3) return res;
+
         int count = 0;
-        int sum = 0;
+        int diff = A[1] - A[0];
+
         for (int i = 2; i < A.length; i++) {
-            if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) {
-                count++;
-            } else {
-                sum += (count + 1) * (count) / 2;
+            int nextDiff = A[i] - A[i - 1];
+            if (nextDiff != diff) {
+                diff = nextDiff;
+                res += (count + 1) * (count) / 2;
                 count = 0;
+            } else {
+                count++;
             }
         }
-        return sum += count * (count + 1) / 2;
+
+        res += (count + 1) * (count) / 2;
+
+        return res;
     }
 
     ///////// dp
