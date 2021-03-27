@@ -47,6 +47,26 @@ public class KthMissingPositiveInteger {
         return lo + k;
     }
 
+    /////
+
+    public int findKthPositive4(int[] arr, int k) {
+
+        int[] sarr = new int[1001];
+
+        for (int i = 0 ; i < arr.length; i++) {
+            sarr[arr[i]]++;
+        }
+
+        for (int i = 1; i < sarr.length; i++) {
+            if (sarr[i] == 0) {
+                k--;
+                if (k == 0) return i;
+            }
+        }
+
+        return 1000 + k;
+    }
+
     public static void main(String[] args) {
         System.out.println(new KthMissingPositiveInteger().findKthPositive(new int[]{1, 3}, 5));
     }

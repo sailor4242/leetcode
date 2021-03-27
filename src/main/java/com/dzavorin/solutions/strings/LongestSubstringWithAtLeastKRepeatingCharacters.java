@@ -6,6 +6,7 @@ import java.util.Map;
 public class LongestSubstringWithAtLeastKRepeatingCharacters {
 
     // sliding window
+
     public int longestSubstring(String s, int k) {
         if (s.length() == 0) return 0;
         int[] arr = new int[26];
