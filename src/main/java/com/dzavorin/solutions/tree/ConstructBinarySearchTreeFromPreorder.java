@@ -2,7 +2,7 @@ package com.dzavorin.solutions.tree;
 
 import com.dzavorin.solutions.tree.BinaryTreeMaximumPathSum.TreeNode;
 
-public class ConstructBinaryTreeFromPreorder {
+public class ConstructBinarySearchTreeFromPreorder {
     public TreeNode bstFromPreorder(int[] preorder) {
         if (preorder.length == 0) {
             return null;

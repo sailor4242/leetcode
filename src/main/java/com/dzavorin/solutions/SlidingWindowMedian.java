@@ -78,13 +78,13 @@ public class SlidingWindowMedian {
 //        System.out.println(Arrays.toString(
 //                new SlidingWindowMedian().medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
 
-//        System.out.println(Arrays.toString(
-//                new SlidingWindowMedian().medianSlidingWindow(new int[]{2147483647,1,2,3,4,5,6,7,2147483647}, 2)));
-//
+        System.out.println(Arrays.toString(
+                new SlidingWindowMedian().medianSlidingWindow(new int[]{2147483647,1,2,3,4,5,6,7,2147483647}, 3)));
+
 //        System.out.println(Arrays.toString(
 //                new SlidingWindowMedian.Solution().medianSlidingWindow(new int[]{2147483647,1,2,3,4,5,6,7,2147483647}, 2)));
 
-        System.out.println(Arrays.toString(new Solution().medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
+//        System.out.println(Arrays.toString(new Solution().medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
     }
 
     static class Solution {

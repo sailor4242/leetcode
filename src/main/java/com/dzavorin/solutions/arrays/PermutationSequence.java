@@ -2,6 +2,8 @@ package com.dzavorin.solutions.arrays;
 
 public class PermutationSequence {
 
+    //Kth permutation
+
     public String getPermutation(int n, int k) {
 
         int[] arr = new int[n];
@@ -9,12 +11,10 @@ public class PermutationSequence {
             arr[i] = i + 1;
         }
 
-
         while (k != 1) {
             nextPermutation(arr);
             k--;
         }
-
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
@@ -27,7 +27,7 @@ public class PermutationSequence {
         for (int i = nums.length - 1; i >= 0; i--) {
             for (int j = nums.length - 1; j > i; j--) {
                 if (nums[j] > nums[i]) {
-                    swap(nums, i , j);
+                    swap(nums, i, j);
                     reverse(nums, i + 1);
                     return;
                 }

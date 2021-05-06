@@ -10,12 +10,8 @@ public class CountingBits {
             int j = i;
             System.out.println("---------");
             while (j > 0){
-                System.out.println(Integer.toBinaryString(j));
-                System.out.println(Integer.toBinaryString(j - 1));
                 j = j & (j - 1);
                 count++;
-                System.out.println(Integer.toBinaryString(j));
-                System.out.println("\n");
             }
             res[i] = count;
         }

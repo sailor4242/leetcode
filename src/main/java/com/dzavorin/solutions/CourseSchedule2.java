@@ -1,43 +1,51 @@
 package com.dzavorin.solutions;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class CourseSchedule2 {
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-
-        int len = prerequisites.length;
-        int[] preCount = new int[numCourses];
-
-        for (int i = 0; i < len; i++) {
-            preCount[prerequisites[i][0]]++;
+        List<List<Integer>> list = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            list.add(new ArrayList<>());
         }
-
-        LinkedList<Integer> stack = new LinkedList<>();
-        for (int i = 0; i < preCount.length; i++) {
-            if (preCount[i] == 0) {
-                stack.add(i);
+        int[] degree = new int[numCourses];
+        for (int i = 0; i < prerequisites.length; i++) {
+            int to = prerequisites[i][0];
+            int from = prerequisites[i][1];
+            degree[to]++;
+            list.get(from).add(to);
+        }
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> res = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (degree[i] == 0) {
+                queue.add(i);
+                res.add(i);
             }
         }
-
-        int[] res = new int[numCourses];
-        int count = 0;
-
-        while (!stack.isEmpty()) {
-            int cur = stack.pop();
-            res[count++] = cur;
-
-            for (int i = 0; i < len; i++) {
-                if (prerequisites[i][1] == cur) {
-                    preCount[prerequisites[i][0]]--;
-                    if (preCount[prerequisites[i][0]] == 0) {
-                        stack.add(prerequisites[i][0]);
-                    }
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            List<Integer> toList = list.get(node);
+            for (int to : toList) {
+                degree[to]--;
+                if (degree[to] == 0) {
+                    queue.offer(to);
+                    res.add(to);
                 }
             }
         }
-
-        return count == numCourses ? res : new int[]{};
-
+        if (res.size() < numCourses) {
+            return new int[0];
+        } else {
+            int[] array = new int[numCourses];
+            for (int i = 0; i < array.length; i++) {
+                array[i] = res.get(i);
+            }
+            return array;
+        }
     }
 }

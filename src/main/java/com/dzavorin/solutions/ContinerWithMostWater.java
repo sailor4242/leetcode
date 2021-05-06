@@ -23,6 +23,7 @@ public class ContinerWithMostWater {
 
     public static void main(String[] args) {
         System.out.println(new ContinerWithMostWater().maxArea(new int[]{2,3,4,5,18,17,6}));
+        System.out.println(Math.log(50000) / Math.log(2));
     }
 
 }

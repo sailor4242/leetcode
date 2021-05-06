@@ -5,11 +5,8 @@ import java.util.*;
 public class CombinationSum {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-
         List<List<Integer>> res = new ArrayList<>();
-
         dfs(candidates, target, res, new LinkedList<>(), 0, 0);
-
         return res;
     }
 

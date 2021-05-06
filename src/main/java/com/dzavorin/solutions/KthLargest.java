@@ -32,18 +32,19 @@ class KthLargest {
     }
 
     private int quickSelect(int[] nums, int start, int end, int k) {
-        int pivot = end;
         int left = start;
         int right = end - 1;
         while (left <= right) {
-            if (nums[left] > nums[pivot]) {
+            if (nums[left] > nums[end]) {
                 swap(nums, left, right);
                 right--;
             } else {
                 left++;
             }
         }
-        swap(nums, left, pivot);
+
+        // [2,3,7,34,6]
+        swap(nums, left, end);
 
         int rank = nums.length - left;
         if (rank == k) return nums[left];

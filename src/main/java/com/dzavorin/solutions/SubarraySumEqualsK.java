@@ -18,13 +18,7 @@ public class SubarraySumEqualsK {
             if (map.containsKey(sum - k)) {
                 count += map.get(sum - k);
             }
-            map.compute(sum, (key, v) -> {
-                if (v == null) {
-                    return 1;
-                } else {
-                    return v + 1;
-                }
-            });
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
         }
         return count;
     }

@@ -16,7 +16,7 @@ public class ThreeSum {
 
                 while (l < r) {
                     if (nums[i] + nums[l] + nums[r] == 0) {
-                        List<Integer> triple = new ArrayList<>(Arrays.asList(nums[i], nums[l], nums[r]));
+                        List<Integer> triple = Arrays.asList(nums[i], nums[l], nums[r]);
                         results.add(triple);
                         while (l < r && nums[l] == nums[l+1]) l++;
                         while (l < r && nums[r] == nums[r-1]) r--;

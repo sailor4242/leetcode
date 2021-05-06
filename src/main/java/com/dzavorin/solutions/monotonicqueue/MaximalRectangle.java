@@ -30,7 +30,7 @@ public class MaximalRectangle {
         return max;
     }
 
-    private int maxHistogrm(int[] arr) {
+    private int maxHistogrm(int[] arr) { // 2, 0, 2, 1, 1
         int max = 0;
         MQ mq = new MQ();
 

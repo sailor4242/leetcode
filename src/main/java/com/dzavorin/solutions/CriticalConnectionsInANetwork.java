@@ -16,11 +16,11 @@ public class CriticalConnectionsInANetwork {
             graph.get(connection.get(1)).add(connection.get(0));
         }
 
-        helper(-1, 0, 0, new HashSet<>());
+        dfs(-1, 0, 0, new HashSet<>());
         return result;
     }
 
-    private void helper(int parent, int node, int time, Set<Integer> visited) {
+    private void dfs(int parent, int node, int time, Set<Integer> visited) {
         visited.add(node);
         timeMap.put(node, time);
         int currTime = time;
@@ -32,7 +32,7 @@ public class CriticalConnectionsInANetwork {
             }
 
             if (!visited.contains(neighbour)) {
-                helper(node, neighbour, time, visited);
+                dfs(node, neighbour, time, visited);
             }
 
             timeMap.put(node, Math.min(timeMap.get(node), timeMap.get(neighbour)));

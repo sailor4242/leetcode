@@ -60,7 +60,35 @@ public class LongestHappyString {
         }
     }
 
+    public int solution(String S) {
+        Integer[][][] distances = new Integer[26][26][2];
+
+        for (int i = 1; i < S.length(); i++) {
+            int first = S.charAt(i - 1) - 'a';
+            int second = S.charAt(i) - 'a';
+            Integer[] cur = distances[first][second];
+            if (cur[0] == null) {
+                cur[0] = i - 1;
+                cur[1] = 0;
+            } else {
+                cur[1] = i - 1 - cur[0];
+            }
+        }
+
+        int res = -1;
+
+        for (Integer[][] dist : distances) {
+            for (Integer[] integers : dist) {
+                if (integers[1] != null && integers[1] > 0) {
+                    res = Math.max(res, integers[1]);
+                }
+            }
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new LongestHappyString().longestDiverseString(1, 1, 7));
+        System.out.println(new LongestHappyString().solution("aaa"));
     }
 }
