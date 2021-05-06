@@ -1,29 +1,8 @@
 package com.dzavorin.solutions.dynamic;
 
-import java.util.Stack;
-
 public class LongestValidParenthesis {
 
     public int longestValidParentheses(String s) {
-        int maxans = 0;
-        Stack<Integer> stack = new Stack<>();
-        stack.push(-1);
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                stack.push(i);
-            } else {
-                stack.pop();
-                if (stack.empty()) {
-                    stack.push(i);
-                } else {
-                    maxans = Math.max(maxans, i - stack.peek());
-                }
-            }
-        }
-        return maxans;
-    }
-
-    public int longestValidParentheses2(String s) {
 
         int res = 0;
 
@@ -56,5 +35,8 @@ public class LongestValidParenthesis {
 
         return res;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f15f5645e8426f98b38de8d9d2f19139a8a4ac45
 }
